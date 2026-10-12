@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useAuth } from '@/hooks/use-auth';
+import { isTokenExpired } from '@/context/AuthContext';
 import { toast } from '@/hooks/use-toast';
 
 interface SocketContextType {
@@ -26,7 +27,7 @@ const getSocketUrl = () => {
 };
 
 export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const { user, isAuthenticated } = useAuth();
+    const { user, isAuthenticated, logout } = useAuth();
     const [socket, setSocket] = useState<Socket | null>(null);
     const [isConnected, setIsConnected] = useState(false);
     const socketRef = useRef<Socket | null>(null);
@@ -49,14 +50,18 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         }
 
         const token = localStorage.getItem('auth_token');
-        if (!token) return;
+        if (!token || isTokenExpired(token)) {
+            console.warn('[SocketProvider] Token missing or expired, logging out');
+            logout();
+            return;
+        }
 
         const socketUrl = getSocketUrl();
         console.log('[SocketProvider] Connecting to', socketUrl);
 
         const newSocket = io(socketUrl, {
             auth: { token },
-            reconnectionAttempts: 10,
+            reconnectionAttempts: 5,
             reconnectionDelay: 1000,
             reconnectionDelayMax: 5000,
             transports: ['websocket', 'polling'],
@@ -67,10 +72,19 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             setIsConnected(true);
         });
 
-        newSocket.on('connect_error', (err) => {
+        newSocket.on('connect_error', (err: any) => {
             console.error('[SocketProvider] Connection error:', err);
-            if (err.message === 'Authentication failed') {
-                toast({ title: 'Socket Auth Failed', variant: 'destructive' });
+            const isAuthError =
+                err.message === 'Authentication failed' ||
+                err?.data?.code === 'AUTH_INVALID' ||
+                err?.data?.code === 'AUTH_MISSING';
+            if (isAuthError) {
+                toast({ title: 'Session Expired', description: 'Please log in again.', variant: 'destructive' });
+                newSocket.disconnect();
+                socketRef.current = null;
+                setSocket(null);
+                setIsConnected(false);
+                logout();
             }
         });
 
