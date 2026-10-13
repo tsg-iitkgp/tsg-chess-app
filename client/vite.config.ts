@@ -35,9 +35,9 @@ export default defineConfig(({ mode }) => ({
         "pwa-maskable-512x512.png"
       ],
       manifest: {
-        name: "ChessTSG - IIT Kharagpur",
-        short_name: "ChessTSG",
-        description: "Play online chess with IIT Kharagpur campus players, solve puzzles, and compete on leaderboards.",
+        name: "TSG Chess Arena - IIT Kharagpur",
+        short_name: "Chess Arena",
+        description: "Play online chess on TSG Chess Arena with IIT Kharagpur campus players, solve puzzles, and compete on leaderboards.",
         theme_color: "#0f172a",
         background_color: "#0f172a",
         display: "standalone",

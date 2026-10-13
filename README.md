@@ -1,4 +1,4 @@
-# TSG Chess Platform
+# TSG Chess Arena
 
 A real-time multiplayer chess platform with WebSocket-based instant updates.
 

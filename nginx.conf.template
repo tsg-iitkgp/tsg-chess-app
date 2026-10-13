@@ -1,5 +1,5 @@
 # ===========================================
-# Nginx Configuration Template for TSG Chess
+# Nginx Configuration Template for TSG Chess Arena
 # ===========================================
 # 1. Place in /etc/nginx/sites-available/chess
 # 2. Link: ln -s /etc/nginx/sites-available/chess /etc/nginx/sites-enabled/

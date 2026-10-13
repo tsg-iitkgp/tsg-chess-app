@@ -58,8 +58,8 @@ function generatePGN({ whiteUsername, blackUsername, result, moves, timeControl,
 
     // Build PGN headers
     const headers = [
-        `[Event "TSG Chess Game"]`,
-        `[Site "TSG Chess Platform"]`,
+        `[Event "TSG Chess Arena Game"]`,
+        `[Site "TSG Chess Arena"]`,
         `[Date "${dateStr}"]`,
         `[White "${whiteUsername}"]`,
         `[Black "${blackUsername}"]`,

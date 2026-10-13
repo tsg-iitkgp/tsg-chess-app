@@ -48,7 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, showCloseButton }) 
         <NavLink to="/" className="flex items-center gap-2 group">
           <span className="text-primary text-2xl">♔</span>
           <span className="font-bold text-lg text-foreground">
-            Chess<span className="text-primary">TSG</span>
+            TSG Chess <span className="text-primary">Arena</span>
           </span>
         </NavLink>
       </div>
@@ -98,10 +98,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, showCloseButton }) 
           <Globe size={18} />
           <span className="text-sm">English</span>
         </button>
-        <button className="sidebar-item w-full">
+        <a
+          href="mailto:tech.coordi@iitkgp.ac.in"
+          className="sidebar-item w-full"
+        >
           <HelpCircle size={18} />
           <span className="text-sm">Support</span>
-        </button>
+        </a>
       </div>
     </aside>
   );
