@@ -48,7 +48,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, showCloseButton }) 
         <NavLink to="/" className="flex items-center gap-2 group">
           <span className="text-primary text-2xl">♔</span>
           <span className="font-bold text-lg text-foreground">
-            TSG Chess <span className="text-primary">Arena</span>
+            Mates of <span className="text-primary">KGP</span>
           </span>
         </NavLink>
       </div>

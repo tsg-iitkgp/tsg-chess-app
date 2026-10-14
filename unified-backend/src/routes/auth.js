@@ -63,7 +63,9 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ error: 'Required fields missing' });
         }
 
-        const user = await UserRepository.findByUsername(username, false); // Include password for comparison
+        // Accept username or email as the login identifier
+        const identifier = username.trim().toLowerCase();
+        const user = await UserRepository.findByLoginIdentifier(identifier);
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }

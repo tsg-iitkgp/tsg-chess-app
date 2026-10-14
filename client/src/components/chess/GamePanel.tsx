@@ -210,8 +210,8 @@ export const GamePanel: React.FC<GamePanelProps> = ({
 
     // Build PGN headers
     const headers = [
-      `[Event "TSG Chess Arena Game"]`,
-      `[Site "TSG Chess Arena"]`,
+      `[Event "Mates of KGP Game"]`,
+      `[Site "Mates of KGP"]`,
       `[Date "${dateStr}"]`,
       `[White "${whitePlayerName}"]`,
       `[Black "${blackPlayerName}"]`,

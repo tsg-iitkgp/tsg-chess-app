@@ -65,8 +65,19 @@ class UserRepository {
      */
     static async findByUsernameOrEmail(username, email) {
         const result = await query(
-            'SELECT * FROM users WHERE username = $1 OR email = $2',
+            'SELECT * FROM users WHERE username = $1 OR LOWER(email) = LOWER($2)',
             [username, email]
+        );
+        return toCamelCase(result.rows[0]);
+    }
+
+    /**
+     * Find user by login identifier (username or email)
+     */
+    static async findByLoginIdentifier(identifier) {
+        const result = await query(
+            'SELECT * FROM users WHERE username = $1 OR LOWER(email) = LOWER($1)',
+            [identifier]
         );
         return toCamelCase(result.rows[0]);
     }

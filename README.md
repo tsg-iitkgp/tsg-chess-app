@@ -1,4 +1,4 @@
-# TSG Chess Arena
+# Mates of KGP
 
 A real-time multiplayer chess platform with WebSocket-based instant updates.
 

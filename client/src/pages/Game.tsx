@@ -517,8 +517,8 @@ const Game = () => {
 
     // Build PGN headers
     const headers = [
-      `[Event "TSG Chess Arena Game"]`,
-      `[Site "TSG Chess Arena"]`,
+      `[Event "Mates of KGP Game"]`,
+      `[Site "Mates of KGP"]`,
       `[Date "${dateStr}"]`,
       `[White "${whitePlayerName}"]`,
       `[Black "${blackPlayerName}"]`,
@@ -560,7 +560,7 @@ const Game = () => {
     if (navigator.share) {
       try {
         await navigator.share({
-          title: `TSG Chess Arena - ${whitePlayerName} vs ${blackPlayerName}`,
+          title: `Mates of KGP - ${whitePlayerName} vs ${blackPlayerName}`,
           text: pgn,
         });
         return;

@@ -100,7 +100,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </Sheet>
           <span className="font-bold text-lg text-foreground flex items-center gap-2 mx-auto absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
             <span className="text-primary text-2xl">♔</span>
-            <span>TSG Chess <span className="text-primary">Arena</span></span>
+            <span>Mates of <span className="text-primary">KGP</span></span>
           </span>
           {/* Dummy flex box for symmetry, can be hidden or used for spacing */}
           <div className="w-10 h-10" />
